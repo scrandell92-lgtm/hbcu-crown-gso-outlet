@@ -32,7 +32,7 @@ function initHeader() {
   // Announcement bar
   const announcementBar = document.createElement('div');
   announcementBar.className = 'announcement-bar';
-  announcementBar.innerHTML = '<p>Silk Infused HBCU Apparel &bull; Protect Your Crown &bull; Free Shipping on Orders $150+</p>';
+  announcementBar.innerHTML = '<p>Silk Infused HBCU Apparel &bull; Protect Your Crown &bull; Local Pickup in Greensboro, NC</p>';
 
   // Nav
   const nav = document.createElement('nav');
@@ -111,7 +111,7 @@ function initFooter() {
             <h4>Policies</h4>
             <ul class="footer-links">
               <li><a href="#" class="terms-trigger">Terms & Conditions</a></li>
-              <li><a href="#" class="shipping-trigger">Shipping Policy</a></li>
+              <li><a href="#" class="pickup-trigger">Pickup Policy</a></li>
               <li><a href="#" class="return-trigger">Return Policy</a></li>
               <li><a href="#" class="privacy-trigger">Privacy Policy</a></li>
               <li><a href="#" class="fraud-trigger">Fraud Prevention</a></li>
@@ -181,11 +181,11 @@ function initCartDrawer() {
           <span>Subtotal</span>
           <span id="cart-subtotal-amount">$0.00</span>
         </div>
-        <p class="cart-tax-note">Taxes and shipping calculated at checkout</p>
+        <p class="cart-tax-note">Taxes calculated at checkout &bull; Local pickup only</p>
         <div class="checkout-agreement">
           <label class="checkout-agreement-label">
             <input type="checkbox" id="checkout-agree" class="checkout-agree-checkbox">
-            <span>I agree to the <a href="#" class="terms-trigger">Terms &amp; Conditions</a>, <a href="#" class="shipping-trigger">Shipping Policy</a>, <a href="#" class="return-trigger">Return Policy</a>, and <a href="#" class="chargeback-trigger">Chargeback Policy</a>. I confirm this purchase is authorized and understand that filing a fraudulent chargeback may result in account suspension and collection action.</span>
+            <span>I agree to the <a href="#" class="terms-trigger">Terms &amp; Conditions</a>, <a href="#" class="pickup-trigger">Pickup Policy</a>, <a href="#" class="return-trigger">Return Policy</a>, and <a href="#" class="chargeback-trigger">Chargeback Policy</a>. I confirm this purchase is authorized, I understand all orders are <strong>local pickup only</strong> in Greensboro, NC, and that filing a fraudulent chargeback may result in account suspension and collection action.</span>
           </label>
         </div>
         <button class="btn btn-primary btn-lg cart-checkout-btn" id="cart-checkout-btn" onclick="handleCheckout()" disabled>
@@ -296,41 +296,45 @@ function initTermsModal() {
       id: 'terms-modal',
       trigger: 'terms-trigger',
       title: 'Terms & Conditions',
-      body: '<h3>1. General</h3><p>Welcome to HBCU Crown GSO Outlet. By accessing or using our website and purchasing our products, you agree to be bound by these Terms & Conditions.</p><h3>2. Products & Orders</h3><p>All products are subject to availability. We reserve the right to limit quantities, refuse orders, or cancel orders at our discretion. Prices are in USD and subject to change. Product images are for illustration purposes; actual colors may vary slightly.</p><h3>3. Payment</h3><p>We accept major credit cards and other payment methods as displayed at checkout. Payment is processed securely through Stripe. All transactions are in US Dollars.</p><h3>4. Shipping & Delivery</h3><p>All inventory is on hand and will ship in 3-5 business days unless otherwise noted. Shipping costs are calculated at checkout based on your location.</p><h3>5. Returns & Exchanges</h3><p>If you are not satisfied, please contact us within 14 days of delivery. Items must be unworn, unwashed, and in original condition with tags attached. Return shipping is the customer\'s responsibility unless the item is defective.</p><h3>6. Intellectual Property</h3><p>All content on this website is the property of HBCU Crown GSO Outlet and is protected by copyright and trademark laws.</p><h3>7. Limitation of Liability</h3><p>HBCU Crown GSO Outlet shall not be liable for any indirect, incidental, or consequential damages. Our total liability shall not exceed the amount paid for the product in question.</p><h3>8. Contact</h3><p>Questions? Contact us at hbcucrowngsooutlet@gmail.com or (813) 509-0780.</p>'
+      body: '<h3>1. General</h3><p>Welcome to HBCU Crown GSO Outlet. By accessing or using our website and purchasing our products, you agree to be bound by these Terms & Conditions. All purchases are <strong>final sale</strong> and fulfilled via <strong>local pickup only</strong> in Greensboro, North Carolina.</p>' +
+        '<h3>2. Products & Orders</h3><p>All products are subject to availability. We reserve the right to limit quantities, refuse orders, or cancel orders at our discretion. Prices are in USD and subject to change. Product images are for illustration purposes; actual colors may vary slightly.</p>' +
+        '<h3>3. Payment</h3><p>We accept major credit cards and other payment methods as displayed at checkout. Payment is processed securely through Stripe. All transactions are in US Dollars. Payment is collected at the time of purchase.</p>' +
+        '<h3>4. Local Pickup Only</h3><p><strong>We do not ship orders.</strong> All orders are fulfilled via local pickup in Greensboro, NC. By completing a purchase, you acknowledge and agree that you are responsible for picking up your order at the designated pickup location. Pickup details and scheduling will be communicated via email after your order is confirmed. Unclaimed orders after 14 days may be forfeited without refund.</p>' +
+        '<h3>5. All Sales Final</h3><p>All purchases are considered final at the time of pickup. By completing checkout and picking up your order, you confirm that you have inspected the item(s) and accept them in their current condition. Returns, exchanges, and refunds are only offered at the sole discretion of HBCU Crown GSO Outlet for defective items reported at the time of pickup.</p>' +
+        '<h3>6. Intellectual Property</h3><p>All content on this website is the property of HBCU Crown GSO Outlet and is protected by copyright and trademark laws.</p>' +
+        '<h3>7. Fraud Prevention & Chargebacks</h3><p>Filing a chargeback for a legitimate, authorized purchase that was picked up constitutes fraud and may result in account suspension, referral to collections, and legal action. We maintain comprehensive transaction records including payment verification, order confirmation, and pickup acknowledgment.</p>' +
+        '<h3>8. Limitation of Liability</h3><p>HBCU Crown GSO Outlet shall not be liable for any indirect, incidental, or consequential damages. Our total liability shall not exceed the amount paid for the product in question.</p>' +
+        '<h3>9. Contact</h3><p>Questions? Contact us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or <a href="tel:8135090780">(813) 509-0780</a>.</p>'
     },
     {
-      id: 'shipping-modal',
-      trigger: 'shipping-trigger',
-      title: 'Shipping Policy',
-      body: '<h3>Order Processing</h3><p>All orders placed through HBCU Crown GSO Outlet are processed within <strong>1&ndash;3 business days</strong> (Monday&ndash;Friday, excluding holidays) after payment is confirmed. During high-demand periods such as homecoming season, product launches, or holidays, processing may take up to 5 business days. You will receive a confirmation email once your order is placed and a second email containing your tracking number once your package ships.</p>' +
-        '<h3>Shipping Rates &amp; Methods</h3>' +
-        '<table style="width:100%;border-collapse:collapse;margin-bottom:16px;"><tr style="border-bottom:1px solid #ddd;"><th style="text-align:left;padding:8px;">Method</th><th style="text-align:left;padding:8px;">Estimated Delivery</th><th style="text-align:left;padding:8px;">Cost</th></tr>' +
-        '<tr style="border-bottom:1px solid #eee;"><td style="padding:8px;">Standard Shipping</td><td style="padding:8px;">5&ndash;7 business days</td><td style="padding:8px;">$5.99</td></tr>' +
-        '<tr style="border-bottom:1px solid #eee;"><td style="padding:8px;">Expedited Shipping</td><td style="padding:8px;">2&ndash;3 business days</td><td style="padding:8px;">$12.99</td></tr>' +
-        '<tr><td style="padding:8px;"><strong>Free Shipping</strong></td><td style="padding:8px;">5&ndash;7 business days</td><td style="padding:8px;">Orders over $150</td></tr></table>' +
-        '<p>All delivery estimates begin <em>after</em> your order has been processed and shipped. Delivery dates are estimates and not guarantees.</p>' +
-        '<h3>Shipping Carriers</h3><p>We ship through USPS, UPS, and FedEx depending on your location and selected shipping method. The carrier is determined at the time of fulfillment to ensure the fastest and most reliable delivery.</p>' +
-        '<h3>Order Tracking</h3><p>Once your order ships, a tracking number will be emailed to the address provided at checkout. Please allow up to 24 hours for tracking information to update in the carrier\'s system. It is the customer\'s responsibility to monitor their tracking and ensure someone is available to receive the package.</p>' +
-        '<h3>Shipping Destinations</h3><p>We currently ship to all 50 U.S. states and U.S. territories. International shipping is not available at this time. Orders can only be shipped to the address provided at checkout. Please double-check your shipping address before completing your purchase&mdash;we are not responsible for packages delivered to incorrect addresses provided by the customer.</p>' +
-        '<h3>Delivery Issues</h3><p><strong>Lost Packages:</strong> If your tracking shows "delivered" but you have not received your package, please check with neighbors, your building manager, or contact the carrier directly. If the package cannot be located, contact us within <strong>7 days</strong> of the delivery date at hbcucrowngsooutlet@gmail.com. We will open an investigation with the carrier. HBCU Crown GSO Outlet is not responsible for packages marked as delivered by the carrier.</p>' +
-        '<p><strong>Damaged Items:</strong> If your order arrives damaged, please email us at hbcucrowngsooutlet@gmail.com within <strong>48 hours</strong> of delivery with photos of the damaged item(s) and packaging. We will arrange a replacement or refund at our discretion.</p>' +
-        '<p><strong>Incorrect Address:</strong> If a package is returned to us due to an incorrect or incomplete address provided by the customer, the customer is responsible for re-shipping costs.</p>' +
-        '<h3>Shipping Delays</h3><p>HBCU Crown GSO Outlet is not responsible for delays caused by shipping carriers, severe weather, natural disasters, or other circumstances beyond our control. During peak seasons, carrier delays are common and are outside of our control.</p>' +
-        '<h3>Signature Confirmation</h3><p>Orders over $200 may require signature confirmation upon delivery for added security. The carrier will make multiple delivery attempts before the package is returned.</p>' +
-        '<h3>P.O. Boxes &amp; APO/FPO</h3><p>We ship to P.O. Boxes and military APO/FPO addresses via USPS. Expedited shipping is not available for these addresses.</p>' +
-        '<h3>Contact Us</h3><p>For any shipping-related questions, email us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or call <a href="tel:8135090780">(813) 509-0780</a>.</p>'
+      id: 'pickup-modal',
+      trigger: 'pickup-trigger',
+      title: 'Pickup Policy',
+      body: '<h3>Local Pickup Only</h3><p>HBCU Crown GSO Outlet operates as a <strong>local pickup only</strong> outlet in <strong>Greensboro, North Carolina</strong>. We do not offer shipping or delivery services. By placing an order on our website, you acknowledge and agree that you will pick up your purchased item(s) in person.</p>' +
+        '<h3>How Pickup Works</h3><ol><li>Place your order and complete payment online through our secure Stripe checkout</li><li>You will receive an order confirmation email with your order number</li><li>Within 1&ndash;2 business days, you will receive a second email with <strong>pickup location details</strong> and available <strong>pickup times</strong></li><li>Bring your <strong>order confirmation</strong> (email or screenshot) and a <strong>valid photo ID</strong> matching the name on the order to pick up your item(s)</li></ol>' +
+        '<h3>Pickup Window</h3><p>Orders must be picked up within <strong>14 calendar days</strong> of the pickup-ready notification. If you need to reschedule, please contact us at least 24 hours before your scheduled pickup time.</p>' +
+        '<p><strong>Unclaimed orders:</strong> Orders not picked up within 14 days of the pickup-ready notification will be considered forfeited. No refund will be issued for unclaimed orders. HBCU Crown GSO Outlet reserves the right to resell unclaimed merchandise.</p>' +
+        '<h3>Pickup Identification Requirements</h3><p>To prevent fraud and protect our customers, the following are required at pickup:</p><ul><li>Order confirmation email or screenshot showing your order number</li><li>Government-issued photo ID matching the name on the order</li><li>If someone else is picking up on your behalf, you must notify us in advance via email with the authorized person\'s full name. The authorized person must present their own valid photo ID.</li></ul>' +
+        '<h3>Inspect Before You Leave</h3><p>Please <strong>inspect all items at the time of pickup</strong> before leaving. Once you leave the pickup location with your item(s), the sale is considered complete and final. Any defects or issues must be reported at the time of pickup.</p>' +
+        '<h3>No Shipping Available</h3><p>We are a local outlet serving the Greensboro, NC community. We do not ship orders under any circumstances. Please do not place an order if you are unable to pick up in the Greensboro, NC area.</p>' +
+        '<h3>Contact Us</h3><p>For pickup scheduling or questions, email us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or call <a href="tel:8135090780">(813) 509-0780</a>.</p>'
     },
     {
       id: 'return-modal',
       trigger: 'return-trigger',
       title: 'Return Policy',
-      body: '<h3>Return Eligibility</h3><p>We accept returns within 14 days of delivery. To be eligible for a return, items must be:</p><ul><li>Unworn, unwashed, and unaltered</li><li>In original condition with all tags attached</li><li>In original packaging (if applicable)</li></ul><h3>Non-Returnable Items</h3><p>The following items are final sale and cannot be returned:</p><ul><li>Items marked as "Final Sale" or "Clearance"</li><li>Gift cards</li><li>Items that have been worn, washed, or altered</li></ul><h3>How to Initiate a Return</h3><p>To start a return, email us at hbcucrowngsooutlet@gmail.com with your order number and reason for return. We will provide you with return instructions and a return authorization number.</p><h3>Return Shipping</h3><p>Return shipping costs are the responsibility of the customer unless the item is defective or we made an error. We recommend using a trackable shipping method.</p><h3>Refunds</h3><p>Once we receive and inspect your return, we will process your refund within 5-7 business days. Refunds are issued to the original payment method. Please allow additional time for your bank to process the refund.</p><h3>Exchanges</h3><p>We currently do not offer direct exchanges. To get a different size or color, please return the original item and place a new order.</p>'
+      body: '<h3>All Sales Final</h3><p>All purchases made through HBCU Crown GSO Outlet are <strong>final sale</strong>. Because all orders are fulfilled via local pickup, customers have the opportunity to <strong>inspect all items at the time of pickup</strong> before accepting them. Once you leave the pickup location with your item(s), the transaction is considered complete.</p>' +
+        '<h3>Defective Items</h3><p>If you discover a manufacturing defect or quality issue <strong>at the time of pickup</strong>, please notify our staff immediately before leaving. We will inspect the item and, at our sole discretion, offer one of the following resolutions:</p><ul><li>Exchange for the same item (subject to availability)</li><li>Store credit for the purchase amount</li><li>Refund to the original payment method</li></ul>' +
+        '<h3>No Returns After Pickup</h3><p>Once you have picked up and left with your item(s), we do not accept returns or offer refunds for any reason, including but not limited to:</p><ul><li>Change of mind or buyer\'s remorse</li><li>Incorrect size selection (size charts are provided on our website)</li><li>Color variations due to screen differences</li><li>Items that have been worn, washed, or altered</li></ul>' +
+        '<h3>Exchanges</h3><p>Exchanges are only available at the time of pickup for defective items or if the wrong item was provided. We do not offer exchanges after the customer has left the pickup location.</p>' +
+        '<h3>Order Cancellations</h3><p>If you need to cancel an order <strong>before pickup</strong>, please contact us as soon as possible at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a>. Cancellations requested within 24 hours of placing the order may be eligible for a full refund at our discretion. Cancellation requests made after 24 hours are not guaranteed.</p>' +
+        '<h3>Contact Us</h3><p>For any questions about our return policy, email us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or call <a href="tel:8135090780">(813) 509-0780</a>.</p>'
     },
     {
       id: 'privacy-modal',
       trigger: 'privacy-trigger',
       title: 'Privacy Policy',
-      body: '<h3>Information We Collect</h3><p>We collect information you provide directly, including your name, email address, shipping address, and payment information when you make a purchase or subscribe to our newsletter.</p><h3>How We Use Your Information</h3><p>We use your information to:</p><ul><li>Process and fulfill your orders</li><li>Send order confirmations and shipping updates</li><li>Send promotional emails and newsletters (with your consent)</li><li>Improve our website and customer experience</li><li>Respond to your inquiries and support requests</li></ul><h3>Information Sharing</h3><p>We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our website, processing payments (Stripe), and delivering orders.</p><h3>Email Communications</h3><p>If you subscribe to our VIP list or newsletter, you will receive promotional emails. You can unsubscribe at any time by clicking the unsubscribe link in any email or by contacting us.</p><h3>Data Security</h3><p>We implement industry-standard security measures to protect your personal information. Payment processing is handled securely by Stripe and we do not store your credit card information on our servers.</p><h3>Cookies</h3><p>Our website may use cookies to enhance your browsing experience and remember your cart contents. You can disable cookies in your browser settings.</p><h3>Contact</h3><p>If you have questions about this Privacy Policy, contact us at hbcucrowngsooutlet@gmail.com or (813) 509-0780.</p>'
+      body: '<h3>Information We Collect</h3><p>We collect information you provide directly, including your name, email address, phone number, and payment information when you make a purchase or subscribe to our newsletter.</p><h3>How We Use Your Information</h3><p>We use your information to:</p><ul><li>Process and fulfill your orders</li><li>Send order confirmations and pickup notifications</li><li>Verify your identity at the time of pickup</li><li>Send promotional emails and newsletters (with your consent)</li><li>Improve our website and customer experience</li><li>Respond to your inquiries and support requests</li></ul><h3>Information Sharing</h3><p>We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our website and processing payments (Stripe).</p><h3>Email Communications</h3><p>If you subscribe to our VIP list or newsletter, you will receive promotional emails. You can unsubscribe at any time by clicking the unsubscribe link in any email or by contacting us.</p><h3>Data Security</h3><p>We implement industry-standard security measures to protect your personal information. Payment processing is handled securely by Stripe and we do not store your credit card information on our servers.</p><h3>Cookies</h3><p>Our website may use cookies to enhance your browsing experience and remember your cart contents. You can disable cookies in your browser settings.</p><h3>Contact</h3><p>If you have questions about this Privacy Policy, contact us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or <a href="tel:8135090780">(813) 509-0780</a>.</p>'
     },
     {
       id: 'fraud-modal',
@@ -340,26 +344,26 @@ function initTermsModal() {
         '<h3>Payment Verification</h3><p>All payments are processed securely through <strong>Stripe</strong>, a PCI-DSS Level 1 certified payment processor. We do not store, process, or have access to your full credit card numbers on our servers. To protect against unauthorized use, we may verify orders using the following methods:</p><ul><li>Billing address verification (AVS &mdash; Address Verification System)</li><li>Card verification value (CVV/CVC) matching</li><li>3D Secure authentication when supported by your bank</li><li>IP address and geolocation analysis</li><li>Order pattern analysis for unusual purchasing behavior</li></ul>' +
         '<h3>Order Review &amp; Verification</h3><p>HBCU Crown GSO Outlet reserves the right to review, delay, or cancel any order that triggers our fraud detection criteria. Orders may be flagged for review if:</p><ul><li>The billing address does not match the address on file with the card issuer</li><li>The shipping address differs significantly from the billing address</li><li>Multiple orders are placed in quick succession using different payment methods</li><li>Unusually large or high-volume orders are placed</li><li>The order is placed from a high-risk IP address or using a VPN/proxy</li><li>The provided email address or phone number cannot be verified</li></ul>' +
         '<p>If your order is flagged, we may contact you at the email address or phone number provided to verify your identity before processing. Orders that cannot be verified will be cancelled and refunded.</p>' +
-        '<h3>Customer Identity Verification</h3><p>In some cases, we may request additional verification before shipping an order, including but not limited to:</p><ul><li>A photo of the front of the credit or debit card used (last 4 digits visible only)</li><li>A government-issued photo ID matching the billing name</li><li>Phone verification via the number on file</li></ul><p>Failure to provide requested verification within 48 hours may result in order cancellation.</p>' +
-        '<h3>Unauthorized Transactions</h3><p>If you believe a purchase was made on your card without your authorization, please:</p><ol><li>Contact your card issuer or bank immediately to report the unauthorized charge</li><li>Contact us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or <a href="tel:8135090780">(813) 509-0780</a> so we can investigate and cancel the order if it has not yet shipped</li></ol>' +
+        '<h3>Customer Identity Verification</h3><p>All orders require identity verification at pickup. Customers must present:</p><ul><li>Order confirmation email or screenshot</li><li>A government-issued photo ID matching the name on the order</li></ul><p>Orders that cannot be verified at pickup will not be released. Additionally, we may request verification before processing an order, including phone verification via the number on file. Failure to provide requested verification within 48 hours may result in order cancellation.</p>' +
+        '<h3>Unauthorized Transactions</h3><p>If you believe a purchase was made on your card without your authorization, please:</p><ol><li>Contact your card issuer or bank immediately to report the unauthorized charge</li><li>Contact us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or <a href="tel:8135090780">(813) 509-0780</a> so we can investigate and cancel the order before it is picked up</li></ol>' +
         '<h3>Fraudulent Chargebacks</h3><p>Filing a chargeback or payment dispute for a legitimate purchase that was authorized, received, and not returned through our official return process constitutes <strong>friendly fraud</strong> and may result in:</p><ul><li>Permanent account suspension from HBCU Crown GSO Outlet</li><li>Submission of transaction evidence to the payment processor and card network</li><li>Referral to collections for recovery of the disputed amount plus administrative fees</li><li>Reporting to fraud prevention databases</li></ul>' +
-        '<h3>Record Keeping</h3><p>For fraud prevention purposes, we maintain records of all transactions including:</p><ul><li>Order confirmations and receipts</li><li>Shipping confirmations with tracking numbers and delivery proof</li><li>Customer communications and correspondence</li><li>IP addresses and device information at time of purchase</li><li>AVS and CVV verification results</li></ul><p>These records are retained for a minimum of 2 years and may be used as evidence in the event of a disputed charge.</p>' +
-        '<h3>Refund Policy for Suspected Fraud</h3><p>If we determine that an order was placed fraudulently, we will cancel the order and issue a full refund to the original payment method. If the order has already shipped, we will work with the carrier to intercept the package.</p>' +
+        '<h3>Record Keeping</h3><p>For fraud prevention purposes, we maintain records of all transactions including:</p><ul><li>Order confirmations and receipts</li><li>Pickup confirmation and ID verification records</li><li>Customer communications and correspondence</li><li>IP addresses and device information at time of purchase</li><li>AVS and CVV verification results</li></ul><p>These records are retained for a minimum of 2 years and may be used as evidence in the event of a disputed charge.</p>' +
+        '<h3>Refund Policy for Suspected Fraud</h3><p>If we determine that an order was placed fraudulently, we will cancel the order and issue a full refund to the original payment method. If the order has already been picked up, we will pursue all available remedies including reporting to law enforcement.</p>' +
         '<h3>Contact Us</h3><p>If you have questions about our fraud prevention practices or need to report suspicious activity, contact us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or <a href="tel:8135090780">(813) 509-0780</a>.</p>'
     },
     {
       id: 'chargeback-modal',
       trigger: 'chargeback-trigger',
       title: 'Chargeback &amp; Dispute Policy',
-      body: '<h3>Dispute Resolution &mdash; Contact Us First</h3><p>At HBCU Crown GSO Outlet, we believe most issues can be resolved quickly and fairly through direct communication. <strong>Before filing a chargeback or dispute with your bank or card issuer, we strongly encourage you to contact us first.</strong> We are committed to resolving any concern&mdash;whether it involves product quality, shipping, sizing, or billing.</p>' +
+      body: '<h3>Dispute Resolution &mdash; Contact Us First</h3><p>At HBCU Crown GSO Outlet, we believe most issues can be resolved quickly and fairly through direct communication. <strong>Before filing a chargeback or dispute with your bank or card issuer, we strongly encourage you to contact us first.</strong> We are committed to resolving any concern&mdash;whether it involves product quality, sizing, or billing.</p>' +
         '<p>Contact us at <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a> or <a href="tel:8135090780">(813) 509-0780</a> and we will respond within 1&ndash;2 business days.</p>' +
         '<h3>What Is a Chargeback?</h3><p>A chargeback occurs when a cardholder contacts their bank or card issuer to dispute a charge. While chargebacks are designed to protect consumers from unauthorized transactions, they are sometimes filed in error or for issues that could have been resolved directly with the merchant.</p>' +
-        '<h3>Our Chargeback Response Process</h3><p>When a chargeback is filed against HBCU Crown GSO Outlet, we will respond with comprehensive evidence, which may include:</p><ul><li><strong>Transaction records:</strong> Order confirmation, payment authorization, AVS/CVV verification results</li><li><strong>Proof of delivery:</strong> Carrier tracking information, delivery confirmation, and signature confirmation (if applicable)</li><li><strong>Shipping documentation:</strong> Shipping label details, carrier scans, and estimated vs. actual delivery dates</li><li><strong>Customer communication:</strong> Email correspondence, order notifications, and any prior contact regarding the order</li><li><strong>Product description accuracy:</strong> Product listing details, images, and size charts provided at time of purchase</li><li><strong>Policy acceptance:</strong> Record that the customer agreed to our Terms &amp; Conditions, Shipping Policy, and Return Policy at checkout</li><li><strong>Device and session data:</strong> IP address, browser information, and geolocation data from the time of purchase</li></ul>' +
-        '<h3>Friendly Fraud</h3><p>"Friendly fraud" occurs when a customer files a chargeback for a legitimate order they authorized and received rather than following the merchant\'s return policy. Examples include:</p><ul><li>Claiming a charge is unauthorized when the cardholder made the purchase</li><li>Stating an item was not received when tracking confirms delivery</li><li>Disputing a charge for buyer\'s remorse without attempting a return</li><li>Filing a chargeback after wearing or using the product</li></ul>' +
+        '<h3>Our Chargeback Response Process</h3><p>When a chargeback is filed against HBCU Crown GSO Outlet, we will respond with comprehensive evidence, which may include:</p><ul><li><strong>Transaction records:</strong> Order confirmation, payment authorization, AVS/CVV verification results</li><li><strong>Proof of pickup:</strong> Pickup confirmation, ID verification records, and pickup acknowledgment</li><li><strong>Customer communication:</strong> Email correspondence, pickup scheduling, order notifications, and any prior contact regarding the order</li><li><strong>Product description accuracy:</strong> Product listing details, images, and size charts provided at time of purchase</li><li><strong>Policy acceptance:</strong> Record that the customer agreed to our Terms &amp; Conditions, Pickup Policy, and Return Policy at checkout</li><li><strong>Device and session data:</strong> IP address, browser information, and geolocation data from the time of purchase</li></ul>' +
+        '<h3>Friendly Fraud</h3><p>"Friendly fraud" occurs when a customer files a chargeback for a legitimate order they authorized and picked up rather than following our return policy. Examples include:</p><ul><li>Claiming a charge is unauthorized when the cardholder made the purchase</li><li>Stating an item was not received when pickup records confirm collection</li><li>Disputing a charge for buyer\'s remorse after picking up the item</li><li>Filing a chargeback after wearing or using the product</li></ul>' +
         '<p>HBCU Crown GSO Outlet vigorously contests all cases of friendly fraud. We maintain detailed records of every transaction and will submit all available evidence to the card issuer.</p>' +
         '<h3>Consequences of Fraudulent Chargebacks</h3><p>Customers who file fraudulent or unwarranted chargebacks may be subject to:</p><ul><li>Permanent ban from purchasing on our website</li><li>Recovery of the disputed amount plus all associated chargeback fees (typically $15&ndash;$25 per dispute)</li><li>Referral to a third-party collections agency</li><li>Reporting to fraud prevention networks and databases</li><li>Legal action in cases involving repeated or high-value fraudulent disputes</li></ul>' +
         '<h3>Valid Reasons to Dispute a Charge</h3><p>We acknowledge that there are legitimate reasons to file a dispute, including:</p><ul><li>A charge you truly did not authorize (stolen card)</li><li>Being charged an incorrect amount</li><li>Being charged multiple times for a single order</li></ul><p>In these cases, we will work with you and your bank to resolve the matter promptly.</p>' +
-        '<h3>Checkout Agreement</h3><p>By completing a purchase on HBCU Crown GSO Outlet, customers acknowledge and agree to our Terms &amp; Conditions, Shipping Policy, Return Policy, and this Chargeback &amp; Dispute Policy. This agreement is recorded at the time of checkout and serves as evidence in the event of a dispute.</p>' +
+        '<h3>Checkout Agreement</h3><p>By completing a purchase on HBCU Crown GSO Outlet, customers acknowledge and agree to our Terms &amp; Conditions, Pickup Policy, Return Policy, and this Chargeback &amp; Dispute Policy. Customers further acknowledge that all sales are local pickup only and that this agreement is recorded at the time of checkout and serves as evidence in the event of a dispute.</p>' +
         '<h3>Contact Us</h3><p>We want to resolve your concerns directly. Please reach out before filing a dispute:</p><ul><li>Email: <a href="mailto:hbcucrowngsooutlet@gmail.com">hbcucrowngsooutlet@gmail.com</a></li><li>Phone: <a href="tel:8135090780">(813) 509-0780</a></li><li>Response time: 1&ndash;2 business days</li></ul>'
     }
   ];
@@ -407,7 +411,7 @@ function initTermsModal() {
   });
 }
 
-/* ---- Checkout (Stripe) ---- */
+/* ---- Checkout (Stripe Payment Links) ---- */
 function handleCheckout() {
   const items = CartStore.getItems();
   if (items.length === 0) return;
@@ -419,27 +423,59 @@ function handleCheckout() {
     return;
   }
 
-  // Check if Stripe is configured
-  if (typeof STRIPE_CONFIG !== 'undefined' && STRIPE_CONFIG.publishableKey && !STRIPE_CONFIG.publishableKey.includes('YOUR_KEY')) {
-    // Stripe is configured - redirect to checkout
-    const stripe = Stripe(STRIPE_CONFIG.publishableKey);
-    const lineItems = items.map(function (item) {
-      const priceId = STRIPE_CONFIG.priceIds[item.productId];
-      return { price: priceId, quantity: item.quantity };
-    }).filter(function (item) { return item.price; });
-
-    if (lineItems.length > 0) {
-      stripe.redirectToCheckout({
-        lineItems: lineItems,
-        mode: 'payment',
-        successUrl: window.location.origin + window.location.pathname.replace(/[^/]*$/, '') + 'index.html?checkout=success',
-        cancelUrl: window.location.href,
-      });
-    } else {
-      showToast('Some products are not yet configured for checkout. Please contact us to complete your order.');
-    }
-  } else {
+  // Check if Stripe payment links are configured
+  if (typeof STRIPE_CONFIG === 'undefined' || !STRIPE_CONFIG.paymentLinks) {
     showToast('Checkout is being set up. Please contact us directly to place your order!');
+    return;
+  }
+
+  // For single-item carts, redirect directly to the payment link
+  // For multi-item carts, open payment links for each unique product
+  var missingLinks = [];
+  var linksToOpen = [];
+
+  items.forEach(function (item) {
+    var linkKey = item.productId + '__' + item.size;
+    var paymentLink = STRIPE_CONFIG.paymentLinks[linkKey];
+
+    if (paymentLink && paymentLink.length > 0) {
+      linksToOpen.push({ link: paymentLink, name: item.name, size: item.size, qty: item.quantity });
+    } else {
+      missingLinks.push(item.name + ' (' + item.size + ')');
+    }
+  });
+
+  if (missingLinks.length > 0 && linksToOpen.length === 0) {
+    showToast('Checkout is not yet configured for these products. Please contact us to place your order.');
+    return;
+  }
+
+  if (missingLinks.length > 0) {
+    showToast('Some items are not yet available for online checkout: ' + missingLinks.join(', ') + '. Please contact us for those items.');
+  }
+
+  if (linksToOpen.length === 1) {
+    // Single product - redirect directly
+    var url = linksToOpen[0].link;
+    // Append quantity if more than 1
+    if (linksToOpen[0].qty > 1) {
+      url += (url.includes('?') ? '&' : '?') + 'quantity=' + linksToOpen[0].qty;
+    }
+    window.location.href = url;
+  } else if (linksToOpen.length > 1) {
+    // Multiple products - open first in current tab, rest in new tabs
+    for (var i = 1; i < linksToOpen.length; i++) {
+      var multiUrl = linksToOpen[i].link;
+      if (linksToOpen[i].qty > 1) {
+        multiUrl += (multiUrl.includes('?') ? '&' : '?') + 'quantity=' + linksToOpen[i].qty;
+      }
+      window.open(multiUrl, '_blank');
+    }
+    var firstUrl = linksToOpen[0].link;
+    if (linksToOpen[0].qty > 1) {
+      firstUrl += (firstUrl.includes('?') ? '&' : '?') + 'quantity=' + linksToOpen[0].qty;
+    }
+    window.location.href = firstUrl;
   }
 }
 

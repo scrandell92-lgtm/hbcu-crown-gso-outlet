@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "src": "images/gmodelJacket.webp",
+      "caption": "Silk Infused Lifestyle Jacket",
+      "date": "2026-02-01"
+    },
+    {
+      "src": "images/bmodelPolo.webp",
+      "caption": "NCA&T SU Rugby Polo",
+      "date": "2026-02-01"
+    },
+    {
+      "src": "images/CoupleModel.webp",
+      "caption": "HBCU Crown Couples Collection",
+      "date": "2026-02-01"
+    },
+    {
+      "src": "images/modelPolo.webp",
+      "caption": "Rugby Polo Lifestyle Shot",
+      "date": "2026-02-01"
+    }
+  ]
+}

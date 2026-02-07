@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HBCU Crown GSO Outlet | Premium Silk Infused HBCU Apparel</title>
+  <meta name="description" content="Premium HBCU apparel crafted with silk-infused details. Lifestyle jackets, hoodies, and more for North Carolina A&T. Protect your crown, celebrate your legacy.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header id="site-header"></header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-subtitle">SILK INFUSED HBCU APPAREL</p>
+      <h1>HBCU CROWN<br>GSO OUTLET</h1>
+      <p class="hero-desc">Premium apparel crafted with silk-infused details. Made to protect your crown and celebrate your legacy.</p>
+      <div class="hero-actions">
+        <a href="catalog.html" class="btn btn-white btn-lg">Shop Now</a>
+        <a href="#vip" class="btn btn-outline-white btn-lg">Become Exclusive</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee Bar -->
+  <section class="marquee-bar">
+    <div class="marquee-inner">
+      <span>SILK INFUSED</span>
+      <span>&bull;</span>
+      <span>PROTECT YOUR CROWN</span>
+      <span>&bull;</span>
+      <span>HBCU PRIDE</span>
+      <span>&bull;</span>
+      <span>PREMIUM APPAREL</span>
+      <span>&bull;</span>
+      <span>SILK INFUSED</span>
+      <span>&bull;</span>
+      <span>PROTECT YOUR CROWN</span>
+      <span>&bull;</span>
+      <span>HBCU PRIDE</span>
+      <span>&bull;</span>
+      <span>PREMIUM APPAREL</span>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-section" id="featured">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Products</h2>
+        <p>Our most popular silk-infused pieces</p>
+      </div>
+      <div class="featured-grid" id="featured-grid"></div>
+      <div class="text-center" style="margin-top: var(--space-10);">
+        <a href="catalog.html" class="btn btn-outline btn-lg">View All Products &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family Image -->
+  <section class="family-section">
+    <img src="public/images/products/Family.webp" alt="HBCU Crown GSO Outlet Family" class="family-image" loading="lazy">
+  </section>
+
+  <!-- About Us -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2>About Us</h2>
+      </div>
+      <div class="about-content">
+        <p>HBCU Crowns GSO Outlet was created to bring premium HBCU inspired apparel directly to the Greensboro community. Founded by a CoBE student majoring in International Management with a Sales minor, the outlet was created after identifying an opportunity to bring HBCU Crowns directly to the Greensboro, North Carolina community.</p>
+        <p>As an official franchise partner of HBCU Crowns, we provide authentic, silk-infused, premium apparel at accessible prices while building a space rooted in community, excellence, and purpose. Our mission goes beyond fashion. We are committed to giving back, uplifting HBCU culture, promoting excellence, and creating opportunities that positively impact the communities we serve.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIP / Silk Infused Callout -->
+  <section class="vip-section" id="vip">
+    <div class="vip-overlay"></div>
+    <div class="container vip-content">
+      <h2>VIP ACCESS</h2>
+      <p>Subscribe for exclusive drops, early access, and members-only pricing on silk-infused HBCU apparel.</p>
+      <form class="vip-form" onsubmit="handleNewsletterSubmit(event)">
+        <div class="vip-input-wrap">
+          <input type="email" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit" class="btn btn-white">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter-section">
+    <div class="container">
+      <h2>Join The Family</h2>
+      <p>Subscribe for VIP access, exclusive drops, and weekly updates</p>
+      <form class="newsletter-form-large" onsubmit="handleNewsletterSubmit(event)">
+        <div class="newsletter-input-wrap">
+          <input type="email" placeholder="Enter your email" required aria-label="Email address">
+          <button type="submit">Subscribe</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="site-footer"></footer>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/emailjs-config.js"></script>
+  <script src="js/stripe-config.js"></script>
+  <script src="js/data/products.js"></script>
+  <script src="js/utils/cart-store.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>

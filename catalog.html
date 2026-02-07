@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Products | HBCU Crown GSO Outlet</title>
+  <meta name="description" content="Shop premium silk-infused HBCU apparel. Lifestyle jackets, hoodies, tees, joggers, and more. Protect your crown, celebrate your legacy.">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/catalog.css">
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <!-- Header -->
+  <header id="site-header"></header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">HBCU Crown GSO Outlet</a>
+        <span>&gt;</span>
+        <span id="breadcrumb-current">Products</span>
+      </div>
+
+      <!-- Page Header -->
+      <div class="catalog-header">
+        <h1>Products</h1>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-pill active" data-filter="all" data-type="all">All Products</button>
+        <!-- School Filters -->
+        <button class="filter-pill" data-filter="NC A&T" data-type="school">NC A&T</button>
+        <!-- Category Filters -->
+        <button class="filter-pill" data-filter="Jackets" data-type="category">Jackets</button>
+        <button class="filter-pill" data-filter="Polos" data-type="category">Polos</button>
+        <button class="filter-pill" data-filter="Bottoms" data-type="category">Bottoms</button>
+      </div>
+
+      <!-- Sort -->
+      <div class="sort-bar">
+        <label for="sort-select">Sort by</label>
+        <select class="sort-select" id="sort-select">
+          <option value="name-asc">Alphabetically, A-Z</option>
+          <option value="name-desc">Alphabetically, Z-A</option>
+          <option value="price-asc">Price, Low to High</option>
+          <option value="price-desc">Price, High to Low</option>
+        </select>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </main>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-content product-modal-content" id="product-modal-content"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer id="site-footer"></footer>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/emailjs-config.js"></script>
+  <script src="js/stripe-config.js"></script>
+  <script src="js/data/products.js"></script>
+  <script src="js/utils/cart-store.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages/catalog.js"></script>
+</body>
+</html>

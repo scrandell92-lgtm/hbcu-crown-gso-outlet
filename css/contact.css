@@ -1,0 +1,194 @@
+/* =============================================
+   HBCU Crown Collective - Contact Page Styles
+   ============================================= */
+
+.contact-page {
+  padding: var(--space-10) 0 var(--space-16);
+}
+
+.contact-breadcrumb {
+  font-size: var(--text-sm);
+  color: var(--color-gray);
+  margin-bottom: var(--space-8);
+}
+
+.contact-breadcrumb a {
+  color: var(--color-black);
+}
+
+.contact-breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.contact-header h1 {
+  margin-bottom: var(--space-3);
+}
+
+.contact-header p {
+  color: var(--color-gray);
+  font-size: var(--text-lg);
+}
+
+/* ---- Contact Form ---- */
+.contact-form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--grid-gap);
+  margin-bottom: var(--space-5);
+}
+
+.form-group {
+  margin-bottom: var(--space-5);
+}
+
+.form-group label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-gray-dark);
+  margin-bottom: var(--space-2);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: var(--text-base);
+  transition: border-color var(--transition-fast);
+  background-color: var(--color-white);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-black);
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.form-group input.error,
+.form-group textarea.error {
+  border-color: var(--color-error);
+}
+
+.form-error {
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  margin-top: var(--space-1);
+  display: none;
+}
+
+.form-group.has-error .form-error {
+  display: block;
+}
+
+.contact-submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-submit .btn {
+  min-width: 150px;
+}
+
+/* ---- Contact Info Cards ---- */
+.contact-info-section {
+  margin-top: var(--space-16);
+  padding-top: var(--space-10);
+  border-top: 1px solid var(--border-color);
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-info-card {
+  padding: var(--space-6);
+}
+
+.contact-info-card svg {
+  margin-bottom: var(--space-3);
+  color: var(--color-accent);
+}
+
+.contact-info-card h4 {
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+
+.contact-info-card p {
+  font-size: var(--text-sm);
+  color: var(--color-gray);
+}
+
+.contact-info-card a {
+  color: var(--color-gray);
+}
+
+.contact-info-card a:hover {
+  color: var(--color-accent);
+}
+
+/* Success Message */
+.contact-success {
+  text-align: center;
+  padding: var(--space-10) 0;
+  display: none;
+}
+
+.contact-success.show {
+  display: block;
+}
+
+.contact-success svg {
+  color: var(--color-success);
+  margin-bottom: var(--space-4);
+}
+
+.contact-success h3 {
+  margin-bottom: var(--space-3);
+}
+
+.contact-success p {
+  color: var(--color-gray);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 767px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .contact-submit {
+    justify-content: stretch;
+  }
+
+  .contact-submit .btn {
+    width: 100%;
+  }
+}

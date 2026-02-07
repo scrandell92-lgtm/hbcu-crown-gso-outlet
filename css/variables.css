@@ -1,0 +1,99 @@
+/* =============================================
+   HBCU Crown Collective - Design Tokens
+   ============================================= */
+
+:root {
+  /* Brand Colors - clean black/white/gold */
+  --color-black: #0A0A0A;
+  --color-white: #FFFFFF;
+  --color-off-white: #FAFAFA;
+  --color-gold: #D4A843;
+  --color-gold-dark: #B8922E;
+  --color-gold-light: #E8C76A;
+
+  /* School Colors (for product badges only) */
+  --color-aggie-blue: #003591;
+  --color-aggie-blue-dark: #002366;
+  --color-aggie-gold: #F7A800;
+
+  /* Neutral Palette */
+  --color-gray: #6B6B6B;
+  --color-gray-light: #F5F5F5;
+  --color-gray-medium: #D1D1D1;
+  --color-gray-dark: #333333;
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-overlay-light: rgba(0, 0, 0, 0.4);
+
+  /* Semantic Colors */
+  --color-primary: var(--color-black);
+  --color-accent: var(--color-gold);
+  --color-accent-hover: var(--color-gold-dark);
+  --color-success: #2E7D32;
+  --color-error: #C62828;
+  --color-sale: #C62828;
+
+  /* Typography */
+  --font-heading: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra: 800;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 5rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 70px;
+  --announcement-height: 36px;
+  --grid-gap: 20px;
+  --cart-drawer-width: 400px;
+
+  /* Borders */
+  --border-radius: 4px;
+  --border-radius-lg: 8px;
+  --border-color: #E0E0E0;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* Z-Index Scale */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-drawer: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+}

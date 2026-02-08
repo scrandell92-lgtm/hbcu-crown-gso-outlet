@@ -37,6 +37,9 @@
 }
 
 .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-heading);
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-bold);
@@ -44,6 +47,17 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.nav-logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.nav-logo-text {
+  line-height: 1.1;
 }
 
 .nav-logo:hover {
@@ -754,6 +768,12 @@
 
   .nav-logo {
     font-size: var(--text-lg);
+    gap: 8px;
+  }
+
+  .nav-logo-img {
+    width: 34px;
+    height: 34px;
   }
 
   .footer-grid {

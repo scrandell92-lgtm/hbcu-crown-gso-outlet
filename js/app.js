@@ -39,7 +39,10 @@ function initHeader() {
   nav.className = 'main-nav';
   nav.innerHTML = `
     <div class="nav-inner container">
-      <a href="index.html" class="nav-logo">HBCU Crown GSO Outlet</a>
+      <a href="index.html" class="nav-logo">
+        <img src="public/images/products/crown_gso.webp" alt="HBCU Crown" class="nav-logo-img">
+        <span class="nav-logo-text">HBCU Crown GSO Outlet</span>
+      </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="catalog.html" class="nav-link">Catalog</a></li>

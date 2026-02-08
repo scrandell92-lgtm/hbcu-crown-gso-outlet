@@ -15,6 +15,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 1, 'S': 0, 'M': 0, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/blujcket.webp',
     backImage: 'public/images/products/bkcblu.webp',
     sizeChart: 'public/images/products/jcketsizechrt.webp',
@@ -32,12 +33,13 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 0, 'S': 0, 'M': 0, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/black_jacket.webp',
     backImage: 'public/images/products/bckblkjcket.webp',
     sizeChart: 'public/images/products/jcketsizechrt.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Silk Infused', 'Lifestyle Jacket'],
     collection: 'Featured',
-    inStock: true
+    inStock: false
   },
   {
     id: 'NCAT-JACKET-GREY',
@@ -49,6 +51,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 5, 'S': 1, 'M': 4, 'L': 7, 'XL': 0, '2XL': 12 },
     image: 'public/images/products/greyjcket.webp',
     backImage: 'public/images/products/bckgreyjcket.webp',
     sizeChart: 'public/images/products/jcketsizechrt.webp',
@@ -66,6 +69,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 2, 'S': 1, 'M': 4, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/camojcket.webp',
     backImage: 'public/images/products/bckcamojcket.webp',
     sizeChart: 'public/images/products/jcketsizechrt.webp',
@@ -83,6 +87,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 1, 'S': 0, 'M': 0, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/yllowjcket.webp',
     backImage: 'public/images/products/bckyllowjcket.webp',
     sizeChart: 'public/images/products/jcketsizechrt.webp',
@@ -100,6 +105,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 0, 'S': 1, 'M': 1, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/blkpants.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Sweatpants', 'Lifestyle'],
     collection: 'Featured',
@@ -115,6 +121,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 0, 'S': 0, 'M': 0, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/shorts.webp',
     backImage: 'public/images/products/blck_shorts.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Shorts'],
@@ -131,6 +138,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 0, 'S': 2, 'M': 6, 'L': 1, 'XL': 0, '2XL': 2 },
     image: 'public/images/products/NRugbyPolo.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Rugby Polo', 'Lifestyle'],
     collection: 'Featured',
@@ -146,6 +154,7 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 0, 'S': 0, 'M': 0, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/blueshorts_unC.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Shorts'],
     collection: 'All Products',
@@ -161,12 +170,42 @@ const PRODUCTS = [
     salePrice: null,
     originalPrice: null,
     sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL'],
+    stock: { 'XS': 0, 'S': 0, 'M': 0, 'L': 0, 'XL': 0, '2XL': 0 },
     image: 'public/images/products/whiteshorts_unC.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Shorts'],
     collection: 'All Products',
     inStock: false
   },
 ];
+
+// Stock helper functions
+function getStockForSize(product, size) {
+  if (!product.stock) return 0;
+  return product.stock[size] || 0;
+}
+
+function isSizeInStock(product, size) {
+  return getStockForSize(product, size) > 0;
+}
+
+function getFirstAvailableSize(product) {
+  if (!product.stock) return product.sizes[0];
+  for (var i = 0; i < product.sizes.length; i++) {
+    if (getStockForSize(product, product.sizes[i]) > 0) {
+      return product.sizes[i];
+    }
+  }
+  return null;
+}
+
+function getTotalStock(product) {
+  if (!product.stock) return 0;
+  var total = 0;
+  for (var key in product.stock) {
+    total += product.stock[key];
+  }
+  return total;
+}
 
 // Product helper functions
 function getProductById(id) {

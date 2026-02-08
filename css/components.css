@@ -686,6 +686,12 @@
   margin-bottom: var(--space-4);
 }
 
+/* ---- Size Stock Message ---- */
+.size-stock-msg {
+  min-height: 20px;
+  margin-bottom: 8px;
+}
+
 /* ---- Toast ---- */
 .toast {
   position: fixed;

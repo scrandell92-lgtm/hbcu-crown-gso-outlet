@@ -158,16 +158,22 @@
           return;
         }
 
+        var availableSize = getFirstAvailableSize(product);
+        if (!availableSize) {
+          showToast('Sorry, ' + product.name + ' is currently sold out in all sizes.');
+          return;
+        }
+
         CartStore.addItem({
           productId: product.id,
           name: product.name,
           price: product.price,
-          size: product.sizes[0],
+          size: availableSize,
           quantity: 1,
           image: product.image
         });
 
-        showToast(product.name + ' added to cart!');
+        showToast(product.name + ' (' + availableSize + ') added to cart!');
         openCartDrawer();
       });
     });
@@ -190,6 +196,9 @@
     var modal = document.getElementById('product-modal');
     var content = document.getElementById('product-modal-content');
     modalQuantity = 1;
+
+    var allSoldOut = !product.inStock;
+    var firstAvailable = getFirstAvailableSize(product);
 
     var priceDisplay = '$' + product.price.toFixed(2);
     var originalPriceHtml = '';
@@ -227,6 +236,19 @@
         '</div>';
     }
 
+    // Build size options with per-size stock status
+    var sizeOptionsHtml = product.sizes.map(function (s) {
+      var sizeStock = getStockForSize(product, s);
+      var isSoldOut = sizeStock <= 0;
+      var label = isSoldOut ? s + ' - Sold Out' : s + ' (' + sizeStock + ' left)';
+      var selected = (!allSoldOut && firstAvailable === s) ? ' selected' : '';
+      var disabled = isSoldOut ? ' disabled' : '';
+      return '<option value="' + s + '"' + selected + disabled + '>' + label + '</option>';
+    }).join('');
+
+    // Determine initial button state
+    var initialSizeAvailable = !allSoldOut && firstAvailable;
+
     content.innerHTML =
       '<button class="product-modal-close" id="modal-close-btn" aria-label="Close">' +
         '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>' +
@@ -237,14 +259,13 @@
         '<h2 class="product-modal-name">' + product.name + '</h2>' +
         '<p class="product-modal-price">' + priceDisplay + ' ' + originalPriceHtml + '</p>' +
         '<p class="product-modal-description">' + product.description + '</p>' +
-        '<div class="product-option"' + (product.inStock ? '' : ' style="opacity:0.4;pointer-events:none"') + '>' +
+        (allSoldOut ? '<div class="product-modal-sold-out-notice">This item is completely sold out in all sizes.</div>' : '') +
+        '<div class="product-option">' +
           '<label for="modal-size">Size</label>' +
-          '<select id="modal-size"' + (product.inStock ? '' : ' disabled') + '>' +
-            product.sizes.map(function (s) { return '<option value="' + s + '">' + s + '</option>'; }).join('') +
-          '</select>' +
+          '<select id="modal-size">' + sizeOptionsHtml + '</select>' +
         '</div>' +
-        (product.inStock ? '' : '<div class="product-modal-sold-out-notice">This item is currently sold out and unavailable for purchase.</div>') +
-        '<div class="product-modal-qty"' + (product.inStock ? '' : ' style="opacity:0.4;pointer-events:none"') + '>' +
+        '<div id="size-stock-msg" class="size-stock-msg"></div>' +
+        '<div class="product-modal-qty" id="modal-qty-wrap">' +
           '<label>Quantity</label>' +
           '<div class="qty-control">' +
             '<button class="qty-btn" id="modal-qty-minus">-</button>' +
@@ -252,16 +273,29 @@
             '<button class="qty-btn" id="modal-qty-plus">+</button>' +
           '</div>' +
         '</div>' +
-        '<button class="btn btn-lg product-modal-add-btn' + (product.inStock ? ' btn-primary' : ' btn-sold-out') + '" id="modal-add-btn"' + (product.inStock ? '' : ' disabled') + '>' +
-          (product.inStock ? 'Add to Cart &mdash; $' + product.price.toFixed(2) : 'Sold Out') +
+        '<button class="btn btn-lg product-modal-add-btn" id="modal-add-btn">' +
+          (initialSizeAvailable ? 'Add to Cart &mdash; $' + product.price.toFixed(2) : 'Sold Out') +
         '</button>' +
         '<div class="product-tags">' +
           product.tags.map(function (tag) { return '<span class="product-tag">' + tag + '</span>'; }).join('') +
         '</div>' +
       '</div>';
 
+    // Set initial button state
+    var addBtn = document.getElementById('modal-add-btn');
+    var qtyWrap = document.getElementById('modal-qty-wrap');
+    updateModalSizeState(product, addBtn, qtyWrap);
+
     // Events
     document.getElementById('modal-close-btn').addEventListener('click', closeProductModal);
+
+    // Size change - update button and stock message
+    document.getElementById('modal-size').addEventListener('change', function () {
+      modalQuantity = 1;
+      document.getElementById('modal-qty-value').textContent = '1';
+      updateModalSizeState(product, addBtn, qtyWrap);
+      updateModalPrice(product.price);
+    });
 
     // Quantity
     document.getElementById('modal-qty-minus').addEventListener('click', function () {
@@ -273,19 +307,33 @@
     });
 
     document.getElementById('modal-qty-plus').addEventListener('click', function () {
-      modalQuantity++;
-      document.getElementById('modal-qty-value').textContent = modalQuantity;
-      updateModalPrice(product.price);
+      var selectedSize = document.getElementById('modal-size').value;
+      var maxStock = getStockForSize(product, selectedSize);
+      if (modalQuantity < maxStock) {
+        modalQuantity++;
+        document.getElementById('modal-qty-value').textContent = modalQuantity;
+        updateModalPrice(product.price);
+      } else {
+        showToast('Only ' + maxStock + ' available in size ' + selectedSize);
+      }
     });
 
     // Add to cart
     document.getElementById('modal-add-btn').addEventListener('click', function () {
-      if (!product.inStock) {
-        showToast('Sorry, ' + product.name + ' is currently sold out.');
+      var size = document.getElementById('modal-size').value;
+      var sizeStock = getStockForSize(product, size);
+
+      if (sizeStock <= 0) {
+        showToast('Sorry, size ' + size + ' is sold out.');
         return;
       }
 
-      var size = document.getElementById('modal-size').value;
+      if (modalQuantity > sizeStock) {
+        showToast('Only ' + sizeStock + ' available in size ' + size + '. Adjusted quantity.');
+        modalQuantity = sizeStock;
+        document.getElementById('modal-qty-value').textContent = modalQuantity;
+        return;
+      }
 
       CartStore.addItem({
         productId: product.id,
@@ -296,7 +344,7 @@
         image: product.image
       });
 
-      showToast(product.name + ' added to cart!');
+      showToast(product.name + ' (' + size + ') added to cart!');
       closeProductModal();
       openCartDrawer();
     });
@@ -363,6 +411,36 @@
     document.addEventListener('keydown', escHandler);
   }
 
+  function updateModalSizeState(product, addBtn, qtyWrap) {
+    var sizeSelect = document.getElementById('modal-size');
+    var selectedSize = sizeSelect.value;
+    var sizeStock = getStockForSize(product, selectedSize);
+    var stockMsg = document.getElementById('size-stock-msg');
+
+    if (sizeStock <= 0) {
+      // Size is sold out
+      addBtn.className = 'btn btn-lg product-modal-add-btn btn-sold-out';
+      addBtn.disabled = true;
+      addBtn.innerHTML = 'Sold Out &mdash; Size ' + selectedSize;
+      qtyWrap.style.opacity = '0.4';
+      qtyWrap.style.pointerEvents = 'none';
+      if (stockMsg) {
+        stockMsg.innerHTML = '<span style="color:#dc3545;font-size:13px;font-weight:600;">Size ' + selectedSize + ' is sold out</span>';
+      }
+    } else {
+      // Size is available
+      addBtn.className = 'btn btn-primary btn-lg product-modal-add-btn';
+      addBtn.disabled = false;
+      addBtn.innerHTML = 'Add to Cart &mdash; $' + (product.price * modalQuantity).toFixed(2);
+      qtyWrap.style.opacity = '1';
+      qtyWrap.style.pointerEvents = 'auto';
+      if (stockMsg) {
+        var urgency = sizeStock <= 3 ? ' style="color:#dc3545;font-weight:600;"' : '';
+        stockMsg.innerHTML = '<span' + urgency + ' style="font-size:13px;">Size ' + selectedSize + ': ' + sizeStock + ' left in stock</span>';
+      }
+    }
+  }
+
   function closeProductModal() {
     var modal = document.getElementById('product-modal');
     modal.classList.remove('open');
@@ -371,7 +449,7 @@
 
   function updateModalPrice(unitPrice) {
     var btn = document.getElementById('modal-add-btn');
-    if (btn) {
+    if (btn && !btn.disabled) {
       btn.innerHTML = 'Add to Cart &mdash; $' + (unitPrice * modalQuantity).toFixed(2);
     }
   }

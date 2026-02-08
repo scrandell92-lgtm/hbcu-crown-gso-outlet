@@ -70,11 +70,17 @@ function quickAdd(productId) {
     return;
   }
 
+  var availableSize = getFirstAvailableSize(product);
+  if (!availableSize) {
+    showToast('Sorry, ' + product.name + ' is currently sold out in all sizes.');
+    return;
+  }
+
   CartStore.addItem({
     productId: product.id,
     name: product.name,
     price: product.price,
-    size: product.sizes[0],
+    size: availableSize,
     quantity: 1,
     image: product.image
   });

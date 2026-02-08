@@ -119,7 +119,7 @@ const PRODUCTS = [
     backImage: 'public/images/products/blck_shorts.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Shorts'],
     collection: 'All Products',
-    inStock: true
+    inStock: false
   },
   {
     id: 'NCAT-POLO-001',
@@ -149,7 +149,7 @@ const PRODUCTS = [
     image: 'public/images/products/blueshorts_unC.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Shorts'],
     collection: 'All Products',
-    inStock: true
+    inStock: false
   },
   {
     id: 'NCAT-SHORTS-WHITE',
@@ -164,7 +164,7 @@ const PRODUCTS = [
     image: 'public/images/products/whiteshorts_unC.webp',
     tags: ['HBCU', 'NC A&T', 'Aggies', 'Shorts'],
     collection: 'All Products',
-    inStock: true
+    inStock: false
   },
 ];
 

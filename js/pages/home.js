@@ -26,17 +26,24 @@ function renderFeaturedProducts() {
     }
 
     var categoryIcon = getCategoryIcon(product.category);
+    var soldOut = !product.inStock;
+    var cardClass = 'product-card' + (soldOut ? ' sold-out' : '');
+    var soldOutBadge = soldOut ? '<span class="sold-out-badge">Sold Out</span>' : '';
+    var buttonHtml = soldOut
+      ? '<button class="btn btn-sm btn-sold-out" disabled>Sold Out</button>'
+      : '<button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); quickAdd(\'' + product.id + '\')">Add to Cart</button>';
 
-    return '<div class="product-card" data-category="' + product.category + '" onclick="window.location.href=\'catalog.html?product=' + product.id + '\'">' +
+    return '<div class="' + cardClass + '" data-category="' + product.category + '" onclick="window.location.href=\'catalog.html?product=' + product.id + '\'">' +
       '<div class="product-card-image">' +
         '<img src="' + product.image + '" alt="' + product.name + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\';">' +
         '<div class="product-card-placeholder" style="display:none;">' + categoryIcon + '</div>' +
+        soldOutBadge +
       '</div>' +
       '<div class="product-card-info">' +
         '<p class="product-card-school">' + product.school + '</p>' +
         '<h4 class="product-card-name">' + product.name + '</h4>' +
         '<p>' + priceHtml + '</p>' +
-        '<button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); quickAdd(\'' + product.id + '\')">Add to Cart</button>' +
+        buttonHtml +
       '</div>' +
     '</div>';
   }).join('');
@@ -57,6 +64,11 @@ function getCategoryIcon(category) {
 function quickAdd(productId) {
   var product = getProductById(productId);
   if (!product) return;
+
+  if (!product.inStock) {
+    showToast('Sorry, ' + product.name + ' is currently sold out.');
+    return;
+  }
 
   CartStore.addItem({
     productId: product.id,
